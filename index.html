@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <audio id="bg-music" src="song.mp3" loop></audio>
-  
 <head>
+  <body>
+<audio id="bg-music" src="song.mp3" loop></audio>
+<div id="petals"></div>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Small Token of Love</title>
+<title>Love-Letter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet"/>
@@ -294,7 +295,7 @@ const PET = ['🌸','💗','✨','🌷','💕','🌺'];
     el.className='p';
     el.textContent=PET[Math.random()*PET.length|0];
     el.style.cssText=`left:${Math.random()*100}%;font-size:${11+Math.random()*12}px;animation-duration:${6+Math.random()*9}s;animation-delay:${Math.random()*-10}s`;
-    document.getElementById('petals').appendChild(el);
+    .getElementById('petals').appendChild(el);
   }
 })();
 
@@ -319,7 +320,10 @@ document.getElementById('p1')   .addEventListener('click', ()=>go(2));
 document.getElementById('p2y')  .addEventListener('click', ()=>go(3));
 document.getElementById('p3y')  .addEventListener('click', ()=>go(4));
 document.getElementById('p3n')  .addEventListener('click', openModal);
-document.getElementById('p4y')  .addEventListener('click', ()=>go(5));
+document.getElementById('p1').addEventListener('click', ()=>{
+  document.getElementById('bg-music').play();
+  go(2);
+});
 document.getElementById('p5')   .addEventListener('click', ()=>go(7));
 document.getElementById('p7')   .addEventListener('click', ()=>go(9));
 document.getElementById('btn-rs').addEventListener('click', restartCanvas);

@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <body>
-<audio id="bg-music" src="song.mp3" loop></audio>
-<div id="petals"></div>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Love-Letter</title>
@@ -20,28 +17,20 @@ html,body{width:100%;height:100%;overflow:hidden;-webkit-tap-highlight-color:tra
   --r:20px;--ff-d:'Playfair Display',Georgia,serif;--ff-b:'DM Sans','Helvetica Neue',sans-serif;--ff-s:'Dancing Script',cursive;
 }
 body{background:var(--bg);font-family:var(--ff-b)}
-
-/* PETALS */
 #petals{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .p{position:absolute;animation:fp linear infinite;opacity:0}
 @keyframes fp{0%{transform:translateY(-30px) rotate(0);opacity:0}10%{opacity:.5}90%{opacity:.3}100%{transform:translateY(110vh) rotate(400deg);opacity:0}}
-
-/* PHASE */
 .phase{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
   padding:20px;opacity:0;pointer-events:none;z-index:2;
   transition:opacity .4s ease,transform .4s cubic-bezier(.34,1.3,.64,1);
   transform:scale(.96) translateY(10px);overflow-y:auto}
 .phase.active{opacity:1;pointer-events:all;transform:scale(1) translateY(0)}
 .phase.exit{opacity:0;transform:scale(.93) translateY(-12px);pointer-events:none;transition:opacity .28s ease,transform .28s ease}
-
-/* CARD */
 .card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow-card);
   padding:40px 36px 36px;max-width:420px;width:100%;text-align:center;
   border:1px solid var(--border);position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
   width:48px;height:3px;background:var(--rose);border-radius:0 0 4px 4px}
-
-/* CAT */
 .cat-wrap{margin-bottom:18px;display:flex;justify-content:center}
 .cat{display:flex;align-items:center;justify-content:center;
   font-size:clamp(68px,17vw,96px);line-height:1;
@@ -52,17 +41,10 @@ body{background:var(--bg);font-family:var(--ff-b)}
 @keyframes cat-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes cat-stare{0%,100%{transform:scale(1)}50%{transform:scale(1.07) rotate(-2deg)}}
 @keyframes cat-bounce{from{transform:translateY(0)}to{transform:translateY(-15px) scale(1.04)}}
-
-/* TYPE */
-.head{font-family:var(--ff-d);font-style:italic;font-size:clamp(21px,5.2vw,28px);
-  color:var(--rose);line-height:1.35;margin-bottom:8px}
-.sub{font-family:var(--ff-d);font-size:clamp(13px,3.2vw,15px);
-  color:var(--muted);line-height:1.6;margin-bottom:6px;font-style:italic}
-.qn{font-family:var(--ff-d);font-style:italic;font-weight:700;
-  font-size:clamp(17px,4.3vw,21px);color:var(--rose);margin:13px 0 24px}
+.head{font-family:var(--ff-d);font-style:italic;font-size:clamp(21px,5.2vw,28px);color:var(--rose);line-height:1.35;margin-bottom:8px}
+.sub{font-family:var(--ff-d);font-size:clamp(13px,3.2vw,15px);color:var(--muted);line-height:1.6;margin-bottom:6px;font-style:italic}
+.qn{font-family:var(--ff-d);font-style:italic;font-weight:700;font-size:clamp(17px,4.3vw,21px);color:var(--rose);margin:13px 0 24px}
 .bd{font-size:clamp(13px,3.3vw,15px);color:var(--muted);line-height:1.65;margin-bottom:8px}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
   padding:12px 24px;border-radius:100px;border:none;cursor:pointer;
   font-family:var(--ff-b);font-size:clamp(13px,3.3vw,15px);font-weight:500;
@@ -79,15 +61,9 @@ body{background:var(--bg);font-family:var(--ff-b)}
 @keyframes pulse-b{0%,100%{box-shadow:0 0 0 0 rgba(201,96,90,.4),0 4px 16px rgba(201,96,90,.2)}
   50%{box-shadow:0 0 0 10px rgba(201,96,90,0),0 4px 16px rgba(201,96,90,.2)}}
 .runaway{position:fixed!important;z-index:9999;transition:none!important}
-
-/* CELEBRATE */
-.celeb-title{font-family:var(--ff-d);font-style:italic;font-size:clamp(26px,7vw,40px);
-  color:var(--rose);font-weight:700;margin-bottom:8px}
-.confetti{font-size:clamp(16px,4vw,22px);letter-spacing:2px;margin:14px 0 22px;
-  overflow:hidden;white-space:nowrap;animation:conf-scroll 5s linear infinite}
+.celeb-title{font-family:var(--ff-d);font-style:italic;font-size:clamp(26px,7vw,40px);color:var(--rose);font-weight:700;margin-bottom:8px}
+.confetti{font-size:clamp(16px,4vw,22px);letter-spacing:2px;margin:14px 0 22px;overflow:hidden;white-space:nowrap;animation:conf-scroll 5s linear infinite}
 @keyframes conf-scroll{0%{transform:translateX(30%)}100%{transform:translateX(-100%)}}
-
-/* ENVELOPE */
 .env-wrap{position:relative;display:inline-block;margin-bottom:18px}
 .env-box{width:clamp(128px,30vw,175px);height:clamp(88px,21vw,122px);
   background:linear-gradient(150deg,#FADADD,#F4A9AF);border-radius:6px;
@@ -97,54 +73,33 @@ body{background:var(--bg);font-family:var(--ff-b)}
   background:linear-gradient(160deg,#F7B8BD,#F0888E);
   clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;
   animation:flap 3.5s ease-in-out infinite}
-.env-cat{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);
-  font-size:30px;animation:peek 2.8s ease-in-out infinite}
+.env-cat{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:30px;animation:peek 2.8s ease-in-out infinite}
 .env-hrt{position:absolute;top:-8px;right:-8px;font-size:15px;animation:spin 4s linear infinite}
 @keyframes env-rock{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
 @keyframes flap{0%,30%,100%{transform:rotateX(0)}70%{transform:rotateX(-44deg)}}
 @keyframes peek{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-9px)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-/* CANVAS */
 #phase-9{background:linear-gradient(150deg,#FFF0F3,#F5EFE8);flex-direction:column;overflow:hidden}
-.cv-scene{display:flex;flex-direction:column;align-items:center;justify-content:center;
-  width:100%;height:100%;gap:10px;padding:12px}
-.cv-top p{font-family:var(--ff-d);font-style:italic;color:var(--rose);
-  font-size:clamp(13px,3.2vw,15px);text-align:center}
-#heart-canvas{border-radius:14px;background:#fff;
-  box-shadow:0 4px 28px rgba(150,80,70,.11);display:block;
-  max-width:min(88vw,440px);max-height:min(50vh,390px)}
+.cv-scene{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:10px;padding:12px}
+.cv-top p{font-family:var(--ff-d);font-style:italic;color:var(--rose);font-size:clamp(13px,3.2vw,15px);text-align:center}
+#heart-canvas{border-radius:14px;background:#fff;box-shadow:0 4px 28px rgba(150,80,70,.11);display:block;max-width:min(88vw,440px);max-height:min(50vh,390px)}
 .cv-ctrls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
 .sl-row{display:flex;align-items:center;gap:9px}
 .sl-row label{font-size:13px;font-weight:500;color:#666;white-space:nowrap}
-input[type=range]{-webkit-appearance:none;width:clamp(88px,26vw,144px);height:5px;
-  background:linear-gradient(90deg,var(--rose-light),var(--rose));
-  border-radius:100px;outline:none;cursor:pointer}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;
-  background:var(--rose);border-radius:50%;box-shadow:0 2px 7px rgba(201,96,90,.35);cursor:grab}
+input[type=range]{-webkit-appearance:none;width:clamp(88px,26vw,144px);height:5px;background:linear-gradient(90deg,var(--rose-light),var(--rose));border-radius:100px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;background:var(--rose);border-radius:50%;box-shadow:0 2px 7px rgba(201,96,90,.35);cursor:grab}
 .cv-counter{font-size:12px;color:var(--muted)}
-.btn-restart{background:#fff;color:var(--rose);border:1.5px solid var(--rose);
-  font-size:13px;padding:8px 18px;border-radius:100px;cursor:pointer;
-  font-family:var(--ff-b);transition:all .25s ease}
+.btn-restart{background:#fff;color:var(--rose);border:1.5px solid var(--rose);font-size:13px;padding:8px 18px;border-radius:100px;cursor:pointer;font-family:var(--ff-b);transition:all .25s ease}
 .btn-restart:hover{background:var(--rose-pale)}
-
-/* MODAL */
-.modal-ov{position:fixed;inset:0;z-index:9000;background:rgba(20,5,10,.52);
-  backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;
-  padding:24px;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.modal-ov{position:fixed;inset:0;z-index:9000;background:rgba(20,5,10,.52);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .28s ease}
 .modal-ov.active{opacity:1;pointer-events:all}
-.modal-card{background:#fff;border-radius:var(--r);padding:38px 30px 30px;
-  max-width:370px;width:100%;text-align:center;
-  box-shadow:0 20px 80px rgba(0,0,0,.22);
-  animation:modal-in .38s cubic-bezier(.34,1.56,.64,1) both}
+.modal-card{background:#fff;border-radius:var(--r);padding:38px 30px 30px;max-width:370px;width:100%;text-align:center;box-shadow:0 20px 80px rgba(0,0,0,.22);animation:modal-in .38s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes modal-in{from{transform:scale(.82) translateY(16px);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-hrt{font-size:40px;margin-bottom:10px;animation:hb 1.2s ease-in-out infinite}
 @keyframes hb{0%,100%{transform:scale(1)}25%{transform:scale(1.13)}45%{transform:scale(1)}65%{transform:scale(1.08)}}
-.modal-hd{font-family:var(--ff-d);font-style:italic;font-size:clamp(21px,5vw,26px);
-  color:var(--rose);margin-bottom:8px;font-weight:700}
+.modal-hd{font-family:var(--ff-d);font-style:italic;font-size:clamp(21px,5vw,26px);color:var(--rose);margin-bottom:8px;font-weight:700}
 .modal-sub{font-size:13px;color:var(--muted);line-height:1.68;margin-bottom:22px}
 .modal-btns{display:flex;flex-direction:column;align-items:center;gap:10px}
-
 @media(max-width:390px){
   .card{padding:28px 16px 22px}
   .btn-row{flex-direction:column;align-items:center}
@@ -153,6 +108,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
 </style>
 </head>
 <body>
+
+<audio id="bg-music" src="song.mp3" loop></audio>
 <div id="petals"></div>
 
 <!-- PHASE 1 -->
@@ -266,7 +223,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;heigh
 <script>
 'use strict';
 
-/* ===== STATE MACHINE ===== */
 let cur = 1;
 function go(n) {
   const from = document.getElementById('phase-' + cur);
@@ -287,7 +243,6 @@ function onEnter(n) {
   if (n === 9) startCanvas();
 }
 
-/* ===== PETALS ===== */
 const PET = ['🌸','💗','✨','🌷','💕','🌺'];
 (function(){
   for (let i=0;i<14;i++){
@@ -295,11 +250,10 @@ const PET = ['🌸','💗','✨','🌷','💕','🌺'];
     el.className='p';
     el.textContent=PET[Math.random()*PET.length|0];
     el.style.cssText=`left:${Math.random()*100}%;font-size:${11+Math.random()*12}px;animation-duration:${6+Math.random()*9}s;animation-delay:${Math.random()*-10}s`;
-    .getElementById('petals').appendChild(el);
+    document.getElementById('petals').appendChild(el);
   }
 })();
 
-/* ===== RUNAWAY ===== */
 const RI={};
 function initRunaway(id){
   const b=document.getElementById(id);
@@ -316,26 +270,24 @@ function initRunaway(id){
 }
 
 /* ===== BUTTON WIRING ===== */
-document.getElementById('p1')   .addEventListener('click', ()=>go(2));
-document.getElementById('p2y')  .addEventListener('click', ()=>go(3));
-document.getElementById('p3y')  .addEventListener('click', ()=>go(4));
-document.getElementById('p3n')  .addEventListener('click', openModal);
 document.getElementById('p1').addEventListener('click', ()=>{
   document.getElementById('bg-music').play();
   go(2);
 });
-document.getElementById('p5')   .addEventListener('click', ()=>go(7));
-document.getElementById('p7')   .addEventListener('click', ()=>go(9));
+document.getElementById('p2y').addEventListener('click', ()=>go(3));
+document.getElementById('p3y').addEventListener('click', ()=>go(4));
+document.getElementById('p3n').addEventListener('click', openModal);
+document.getElementById('p4y').addEventListener('click', ()=>go(5));
+document.getElementById('p5') .addEventListener('click', ()=>go(7));
+document.getElementById('p7') .addEventListener('click', ()=>go(9));
 document.getElementById('btn-rs').addEventListener('click', restartCanvas);
 document.getElementById('mod-y').addEventListener('click', ()=>{ closeModal(); go(5); });
 setTimeout(()=>initRunaway('mod-t'), 60);
 
-/* ===== MODAL ===== */
 const modal=document.getElementById('modal');
 function openModal(){modal.classList.add('active');setTimeout(()=>initRunaway('mod-t'),60);}
 function closeModal(){modal.classList.remove('active');}
 
-/* ===== CANVAS ===== */
 const CV  = document.getElementById('heart-canvas');
 const CTX = CV.getContext('2d');
 const SPD = document.getElementById('spd');

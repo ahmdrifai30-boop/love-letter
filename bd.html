@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A special birthday surprise just for you." />
+  <meta name="theme-color" content="#2B0F14" />
+  <title>Happy Birthday 🎂</title>
+  <style>
+/* ============================================================
+   BIRTHDAY SPA — MAIN STYLESHEET
+   Design: Romantic Luxe | Crimson × Gold × Cream
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ─── CSS CUSTOM PROPERTIES ─────────────────────────────── */
+:root {
+  --color-bg-primary:   #2B0F14;
+  --color-bg-secondary: #FBF7F4;
+  --color-accent:       #D4AF37;
+  --color-accent-dark:  #A8891E;
+  --color-accent-light: #F0D875;
+  --color-crimson:      #8B1A2A;
+  --color-rose:         #C97F8A;
+  --color-smoke:        #E8DDD6;
+  --color-text-dark:    #1C1C1C;
+  --color-text-mid:     #4A3933;
+  --color-text-light:   #FBF7F4;
+
+  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-body:    'Cormorant Garamond', Georgia, serif;
+  --font-sans:    'Montserrat', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+
+  --ease-smooth:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in:      cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-out:     cubic-bezier(0, 0.55, 0.45, 1);
+
+  --shadow-gold:  0 0 40px rgba(212, 175, 55, 0.3), 0 0 80px rgba(212, 175, 55, 0.1);
+  --shadow-card:  0 20px 60px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
+  --shadow-soft:  0 8px 32px rgba(43, 15, 20, 0.2);
+
+  --radius-card:  16px;
+  --radius-btn:   50px;
+
+  --transition-base: 0.4s var(--ease-smooth);
+}
+
+/* ─── RESET & BASE ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg-primary);
+  color: var(--color-text-light);
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── GRAIN TEXTURE OVERLAY ─────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ─── APP SHELL ──────────────────────────────────────────── */
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── PHASE WRAPPER BASE ─────────────────────────────────── */
+.phase {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-smooth);
+  will-change: opacity;
+}
+
+.phase.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ─── UTILITY ────────────────────────────────────────────── */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+/* ════════════════════════════════════════════════════════════
+   PHASE 1: LOCKED
+   ════════════════════════════════════════════════════════════ */
+#phase-locked {
+  background: var(--color-bg-primary);
+  overflow: hidden;
+}
+
+/* Ambient background glow */
+#phase-locked::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,26,42,0.4) 0%, transparent 70%);
+  top: -100px; left: -200px;
+  pointer-events: none;
+  animation: ambientPulse 6s ease-in-out infinite;
+}
+
+#phase-locked::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+  bottom: -100px; right: -100px;
+  pointer-events: none;
+  animation: ambientPulse 8s ease-in-out infinite reverse;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.locked-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 960px;
+  height: 100dvh;
+  max-height: 700px;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  margin: 20px;
+}
+
+/* ── Polaroid Pane ── */
+.polaroid-pane {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.polaroid-card {
+  background: #fff;
+  padding: 20px 20px 48px;
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(255,255,255,0.1);
+  border-radius: 4px;
+  transform: rotate(-3deg);
+  transition: transform 0.6s var(--ease-bounce);
+  max-width: 280px;
+  width: 100%;
+  position: relative;
+  animation: polaroidFloat 4s ease-in-out infinite;
+}
+
+.polaroid-card:hover { transform: rotate(-1deg) scale(1.03); }
+
+@keyframes polaroidFloat {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50%       { transform: rotate(-2deg) translateY(-8px); }
+}
+
+.polaroid-img-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #E8D5C4 0%, #C9A99A 50%, #9E7B76 100%);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.6);
+}
+
+.polaroid-placeholder svg {
+  width: 48px; height: 48px;
+  opacity: 0.5;
+}
+
+.polaroid-placeholder span {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.polaroid-caption {
+  text-align: center;
+  margin-top: 16px;
+  font-family: 'Caveat', 'Brush Script MT', cursive;
+  font-size: 18px;
+  color: var(--color-text-dark);
+  line-height: 1.4;
+}
+
+/* Tape effect */
+.polaroid-card::before,
+.polaroid-card::after {
+  content: '';
+  position: absolute;
+  width: 60px; height: 24px;
+  background: rgba(255, 240, 200, 0.6);
+  border-radius: 3px;
+  top: -10px;
+}
+.polaroid-card::before { left: 20px; transform: rotate(-5deg); }
+.polaroid-card::after  { right: 20px; transform: rotate(5deg); }
+
+/* ── Keypad Pane ── */
+.keypad-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-left: 1px solid rgba(212,175,55,0.15);
+}
+
+.keypad-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.keypad-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.keypad-header p {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,247,244,0.4);
+}
+
+.pin-display {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(212,175,55,0.5);
+  background: transparent;
+  transition: all 0.2s var(--ease-bounce);
+}
+
+.pin-dot.filled {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 12px rgba(212,175,55,0.6);
+  transform: scale(1.1);
+}
+
+.pin-display.error .pin-dot { border-color: #e05a6a; background: #e05a6a; }
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 260px;
+}
+
+.key-btn {
+  position: relative;
+  height: 56px;
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  color: var(--color-text-light);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s var(--ease-smooth);
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.key-btn:hover {
+  background: rgba(212,175,55,0.12);
+  border-color: rgba(212,175,55,0.45);
+  transform: translateY(-1px);
+}
+
+.key-btn:active {
+  transform: scale3d(0.93, 0.93, 1) translateY(0);
+  background: rgba(212,175,55,0.2);
+}
+
+.key-btn.special {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(251,247,244,0.6);
+}
+
+.key-btn.key-0 {
+  grid-column: 2;
+}
+
+/* Ripple */
+.key-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(212,175,55,0.3);
+  transform: scale(0);
+  animation: rippleAnim 0.5s var(--ease-out);
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Error shake */
+@keyframes shakeError {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  15% { transform: translate3d(-8px, 0, 0); }
+  30% { transform: translate3d(8px, 0, 0); }
+  45% { transform: translate3d(-6px, 0, 0); }
+  60% { transform: translate3d(6px, 0, 0); }
+  75% { transform: translate3d(-3px, 0, 0); }
+  90% { transform: translate3d(3px, 0, 0); }
+}
+
+.keypad-pane.shake {
+  animation: shakeError 0.5s var(--ease-smooth);
+}
+
+.error-flash {
+  position: fixed;
+  inset: 0;
+  background: rgba(224, 90, 106, 0.15);
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.error-flash.show { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════
+   PHASE 2: LOADING
+   ════════════════════════════════════════════════════════════ */
+#phase-loading {
+  background: var(--color-bg-primary);
+  flex-direction: column;
+  gap: 24px;
+}
+
+.loading-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loading-icon {
+  width: 64px; height: 64px;
+  position: relative;
+}
+
+.loading-icon svg {
+  width: 100%; height: 100%;
+  animation: spinSlow 3s linear infinite;
+}
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+.loading-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+.loading-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,247,244,0.5);
+  height: 20px;
+  transition: opacity 0.4s;
+  min-width: 260px;
+}
+
+.progress-track {
+  width: 280px;
+  height: 2px;
+  background: rgba(212,175,55,0.15);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-crimson), var(--color-accent));
+  border-radius: 99px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+
+/* ════════════════════════════════════════════════════════════
+   PHASE 3: ENVELOPE
+   ════════════════════════════════════════════════════════════ */
+#phase-envelope {
+  background: radial-gradient(ellipse at center, #3d1520 0%, var(--color-bg-primary) 70%);
+  perspective: 1000px;
+}
+
+.envelope-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 340px;
+  height: 240px;
+  transform: translateY(20px);
+  transition: transform 0.4s var(--ease-smooth);
+  transform-style: preserve-3d;
+}
+
+.envelope-wrapper:hover { transform: translateY(0) scale(1.02); }
+
+/* Envelope body */
+.env-body {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #8B3A3A 0%, #5C1A1A 50%, #4A1515 100%);
+  border-radius: 6px;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+
+/* Envelope inner (lighter) */
+.env-body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 60%);
+}
+
+/* Bottom triangle flap */
+.env-flap-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(160deg, #6B2A2A 0%, #4A1515 100%);
+  clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+  z-index: 2;
+}
+
+/* Side triangles */
+.env-flap-left,
+.env-flap-right {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+.env-flap-left {
+  left: 0;
+  background: linear-gradient(135deg, #7A2F2F 0%, #521818 100%);
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+}
+.env-flap-right {
+  right: 0;
+  background: linear-gradient(225deg, #7A2F2F 0%, #521818 100%);
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+}
+
+/* Top flap */
+.env-flap-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 130px;
+  background: linear-gradient(175deg, #9B4040 0%, #6B2525 100%);
+  clip-path: polygon(0% 0%, 50% 75%, 100% 0%);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.8s var(--ease-smooth);
+  z-index: 5;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.envelope-wrapper.open .env-flap-top {
+  transform: rotateX(-180deg);
+}
+
+/* Letter inside */
+.env-letter {
+  position: absolute;
+  left: 20px; right: 20px;
+  bottom: 20px;
+  height: 180px;
+  background: var(--color-bg-secondary);
+  border-radius: 4px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(0px);
+  transition: transform 1s var(--ease-smooth) 0.4s;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+}
+
+.envelope-wrapper.open .env-letter {
+  transform: translateY(-200px);
+}
+
+.env-letter-preview {
+  text-align: center;
+  color: var(--color-text-mid);
+}
+
+.env-letter-preview p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Wax Seal */
+.wax-seal-btn {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #D4AF37, #A8891E);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(212,175,55,0.5), 0 0 0 3px rgba(212,175,55,0.2), inset 0 2px 4px rgba(255,255,255,0.3);
+  transition: all 0.3s var(--ease-bounce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  animation: sealPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(212,175,55,0.5), 0 0 0 3px rgba(212,175,55,0.2); }
+  50%       { box-shadow: 0 4px 30px rgba(212,175,55,0.8), 0 0 0 8px rgba(212,175,55,0.1); }
+}
+
+.wax-seal-btn:hover {
+  transform: translateX(-50%) scale(1.1);
+  animation: none;
+  box-shadow: 0 6px 30px rgba(212,175,55,0.7), 0 0 0 5px rgba(212,175,55,0.25);
+}
+
+.wax-seal-btn:active { transform: translateX(-50%) scale(0.95); }
+
+.wax-seal-btn.opened { animation: none; cursor: default; }
+
+.envelope-hint {
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,247,244,0.35);
+  white-space: nowrap;
+  transition: opacity 0.4s;
+}
+
+.envelope-title {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.envelope-title h2 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+/* ════════════════════════════════════════════════════════════
+   PHASE 4: MAIN CONTENT
+   ════════════════════════════════════════════════════════════ */
+#phase-main {
+  background: var(--color-bg-secondary);
+  align-items: stretch;
+  justify-content: stretch;
+  overflow-y: auto;
+  padding: 0;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+/* ── Letter Column ── */
+.letter-column {
+  background: var(--color-bg-secondary);
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-right: 1px solid rgba(43,15,20,0.1);
+  overflow-y: auto;
+}
+
+/* Stationery lines */
+.letter-column::before {
+  content: '';
+  position: absolute;
+  left: 80px; right: 0; top: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    transparent 0px, transparent 31px,
+    rgba(201,127,138,0.15) 31px, rgba(201,127,138,0.15) 32px
+  );
+  pointer-events: none;
+}
+
+/* Red margin line */
+.letter-column::after {
+  content: '';
+  position: absolute;
+  left: 78px; top: 0; bottom: 0;
+  width: 1px;
+  background: rgba(201,127,138,0.4);
+  pointer-events: none;
+}
+
+.letter-header {
+  text-align: right;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-date {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-mid);
+  opacity: 0.6;
+}
+
+.letter-salutation {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-bg-primary);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.letter-salutation::first-letter {
+  font-size: 3.5rem;
+  float: left;
+  line-height: 0.8;
+  margin-right: 6px;
+  margin-top: 4px;
+  color: var(--color-crimson);
+  font-style: italic;
+}
+
+.letter-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.letter-body p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--color-text-dark);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.letter-body p em {
+  font-style: italic;
+  color: var(--color-crimson);
+}
+
+.letter-body p strong {
+  font-weight: 600;
+  color: var(--color-bg-primary);
+}
+
+.letter-signature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--color-bg-primary);
+  margin-top: 32px;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Gallery Column ── */
+.gallery-column {
+  background: var(--color-bg-primary);
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+}
+
+.gallery-header {
+  text-align: center;
+}
+
+.gallery-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.gallery-header p {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(251,247,244,0.35);
+  margin-top: 4px;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.photo-item {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(135deg, rgba(139,26,42,0.6), rgba(43,15,20,0.8));
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.photo-item:hover { transform: scale(1.04); }
+
+.photo-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(212,175,55,0.1) 0%,
+    transparent 50%
+  );
+  z-index: 1;
+}
+
+.photo-placeholder-inner {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(212,175,55,0.4);
+  font-size: 2rem;
+}
+
+.photo-placeholder-inner small {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(43,15,20,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.photo-item:hover .photo-overlay { opacity: 1; }
+.photo-overlay span { color: white; font-size: 1.5rem; }
+
+/* CTA Button */
+.cta-wrap {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--color-crimson), var(--color-bg-primary));
+  color: var(--color-accent);
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+  animation: ctaPulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(139,26,42,0.4);
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold), 0 8px 30px rgba(139,26,42,0.5);
+  background: linear-gradient(135deg, #a12035, #3d1520);
+  animation: none;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(139,26,42,0.4); }
+  50%       { box-shadow: 0 4px 30px rgba(212,175,55,0.3), 0 4px 20px rgba(139,26,42,0.5); }
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  backdrop-filter: blur(8px);
+}
+
+.lightbox.open { opacity: 1; pointer-events: all; }
+
+.lightbox-inner {
+  max-width: 80vw;
+  max-height: 80vh;
+  position: relative;
+  transform: scale(0.8);
+  transition: transform 0.4s var(--ease-bounce);
+}
+
+.lightbox.open .lightbox-inner { transform: scale(1); }
+
+.lightbox-close {
+  position: absolute;
+  top: -48px; right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.lightbox-close:hover { opacity: 1; }
+
+/* ════════════════════════════════════════════════════════════
+   PHASE 5: CAKE CELEBRATION
+   ════════════════════════════════════════════════════════════ */
+#phase-cake {
+  background: #0d0d0d;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+#fireworks-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cake-scene {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cake-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-accent);
+  text-shadow: 0 0 40px rgba(212,175,55,0.5);
+  animation: titleGlow 2s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(212,175,55,0.4); }
+  50%       { text-shadow: 0 0 60px rgba(212,175,55,0.8), 0 0 100px rgba(212,175,55,0.3); }
+}
+
+/* ── SVG Cake ── */
+.cake-svg-wrap {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cake-svg-wrap svg {
+  width: 200px;
+  filter: drop-shadow(0 10px 40px rgba(212,175,55,0.2));
+}
+
+/* Candle flame CSS */
+.flame {
+  transform-origin: center bottom;
+  animation: flameWobble 0.8s ease-in-out infinite alternate;
+}
+
+.flame:nth-child(2) { animation-duration: 0.65s; animation-delay: 0.1s; }
+.flame:nth-child(3) { animation-duration: 0.95s; animation-delay: 0.2s; }
+
+@keyframes flameWobble {
+  0% { transform: scaleX(1) scaleY(1) rotate(-3deg) skewX(2deg); }
+  25% { transform: scaleX(0.9) scaleY(1.05) rotate(2deg) skewX(-3deg); }
+  50% { transform: scaleX(1.1) scaleY(0.95) rotate(-2deg) skewX(1deg); }
+  75% { transform: scaleX(0.95) scaleY(1.08) rotate(3deg) skewX(-2deg); }
+  100% { transform: scaleX(1.05) scaleY(0.97) rotate(-1deg) skewX(3deg); }
+}
+
+/* Smoke particles */
+.smoke-particle {
+  animation: smokeRise 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes smokeRise {
+  0%   { transform: translateY(0) scaleX(1); opacity: 0.5; }
+  100% { transform: translateY(-60px) scaleX(2.5); opacity: 0; }
+}
+
+/* Blow button */
+.blow-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 48px;
+  background: linear-gradient(135deg, #8B1A2A, #5C1020);
+  border: 2px solid rgba(212,175,55,0.5);
+  border-radius: var(--radius-btn);
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+  box-shadow: 0 0 30px rgba(139,26,42,0.4), 0 0 60px rgba(139,26,42,0.2);
+}
+
+.blow-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-gold), 0 0 40px rgba(139,26,42,0.5);
+}
+
+.blow-btn:active { transform: scale(0.97); }
+
+.blow-btn.blown {
+  border-color: rgba(212,175,55,0.8);
+  background: linear-gradient(135deg, #1a0a10, #0d0d0d);
+  cursor: default;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(212,175,55,0.3); }
+  50%       { box-shadow: 0 0 60px rgba(212,175,55,0.7), 0 0 100px rgba(212,175,55,0.3); }
+}
+
+.wish-message {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: rgba(251,247,244,0.7);
+  text-align: center;
+  max-width: 400px;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.8s var(--ease-smooth);
+}
+
+.wish-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════════════════════════
+   MODAL / LIGHTBOX
+   ════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .locked-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    gap: 0;
+  }
+
+  .polaroid-pane {
+    padding: 32px 24px 20px;
+    border-bottom: 1px solid rgba(212,175,55,0.15);
+  }
+
+  .polaroid-card {
+    max-width: 200px;
+    padding: 14px 14px 36px;
+  }
+
+  .keypad-pane {
+    padding: 24px 24px 40px;
+    border-left: none;
+  }
+
+  .pin-display { gap: 8px; }
+  .pin-dot { width: 12px; height: 12px; }
+
+  .keypad-grid {
+    max-width: 240px;
+    gap: 8px;
+  }
+
+  .key-btn { height: 48px; font-size: 1rem; }
+
+  .main-layout { grid-template-columns: 1fr; }
+
+  .letter-column { padding: 40px 24px; }
+  .letter-column::before { left: 0; }
+  .letter-column::after { display: none; }
+
+  .gallery-column { padding: 40px 24px; }
+
+  .envelope-wrapper { width: 280px; height: 200px; }
+
+  .cake-title { font-size: 1.6rem; }
+}
+
+@media (max-width: 400px) {
+  .keypad-grid { max-width: 210px; gap: 6px; }
+  .key-btn { height: 44px; font-size: 0.95rem; border-radius: 10px; }
+}
+
+/* ─── TRANSITIONS between phases ─────────────────────────── */
+.phase-exit {
+  animation: phaseExit 0.5s var(--ease-in) forwards;
+}
+
+@keyframes phaseExit {
+  to { opacity: 0; transform: scale(0.97); }
+}
+
+.phase-enter {
+  animation: phaseEnter 0.5s var(--ease-out) forwards;
+}
+
+@keyframes phaseEnter {
+  from { opacity: 0; transform: scale(1.03); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+  <!-- Error Flash Overlay -->
+  <div id="error-flash" class="error-flash" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════════
+       APP SHELL
+       ══════════════════════════════════════════ -->
+  <div id="app" role="main">
+
+    <!-- ══════════════════════════════════════
+         PHASE 1: LOCKED
+         ══════════════════════════════════════ -->
+    <section id="phase-locked" class="phase" aria-label="Passcode Screen">
+      <div class="locked-grid">
+
+        <!-- ── Polaroid Pane ── -->
+        <div class="polaroid-pane" aria-hidden="true">
+          <div class="polaroid-card">
+            <div class="polaroid-img-wrap">
+              <!-- Replace with: <img src="your-photo.jpg" alt="Birthday photo" loading="lazy"> -->
+              <div class="polaroid-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>Your Photo Here</span>
+              </div>
+            </div>
+            <div class="polaroid-caption">
+              Happy Birthday,<br>
+              <span data-birthday-name>Sayang</span>! 🌹
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Keypad Pane ── -->
+        <div class="keypad-pane" role="form" aria-label="Passcode Entry">
+          <div class="keypad-header">
+            <h2>For Your Eyes Only</h2>
+            <p>Enter the secret code</p>
+          </div>
+
+          <!-- PIN Dots -->
+          <div class="pin-display" role="status" aria-label="PIN input progress" aria-live="polite">
+            <div class="pin-dot" aria-hidden="true"></div>
+            <div class="pin-dot" aria-hidden="true"></div>
+            <div class="pin-dot" aria-hidden="true"></div>
+            <div class="pin-dot" aria-hidden="true"></div>
+            <div class="pin-dot" aria-hidden="true"></div>
+            <div class="pin-dot" aria-hidden="true"></div>
+          </div>
+
+          <!-- Keypad Grid -->
+          <div class="keypad-grid" role="group" aria-label="Number keypad">
+            <button class="key-btn" data-key="1" aria-label="1">1</button>
+            <button class="key-btn" data-key="2" aria-label="2">2</button>
+            <button class="key-btn" data-key="3" aria-label="3">3</button>
+            <button class="key-btn" data-key="4" aria-label="4">4</button>
+            <button class="key-btn" data-key="5" aria-label="5">5</button>
+            <button class="key-btn" data-key="6" aria-label="6">6</button>
+            <button class="key-btn" data-key="7" aria-label="7">7</button>
+            <button class="key-btn" data-key="8" aria-label="8">8</button>
+            <button class="key-btn" data-key="9" aria-label="9">9</button>
+            <button class="key-btn special" data-key="clr" aria-label="Clear">CLR</button>
+            <button class="key-btn key-0" data-key="0" aria-label="0">0</button>
+            <button class="key-btn special" data-key="del" aria-label="Delete">⌫</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PHASE 2: LOADING
+         ══════════════════════════════════════ -->
+    <section id="phase-loading" class="phase" aria-label="Loading" aria-live="polite">
+      <div class="loading-content">
+        <div class="loading-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="50" cy="50" r="44" stroke="rgba(212,175,55,0.15)" stroke-width="2"/>
+            <!-- Star/flower petals -->
+            <g fill="rgba(212,175,55,0.8)">
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(0 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(45 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(90 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(135 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(180 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(225 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(270 50 50)"/>
+              <ellipse cx="50" cy="12" rx="4" ry="7" transform="rotate(315 50 50)"/>
+            </g>
+            <!-- Center -->
+            <circle cx="50" cy="50" r="8" fill="#D4AF37" opacity="0.9"/>
+          </svg>
+        </div>
+
+        <h1 class="loading-title">Just a moment...</h1>
+        <p class="loading-subtitle" id="loading-subtitle">Preparing something special...</p>
+
+        <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PHASE 3: ENVELOPE
+         ══════════════════════════════════════ -->
+    <section id="phase-envelope" class="phase" aria-label="Envelope Reveal">
+      <div class="envelope-scene">
+
+        <div class="envelope-title">
+          <h2>A letter, just for you</h2>
+        </div>
+
+        <div class="envelope-wrapper" role="region" aria-label="Interactive envelope">
+          <!-- Body -->
+          <div class="env-body"></div>
+
+          <!-- Flaps -->
+          <div class="env-flap-bottom" aria-hidden="true"></div>
+          <div class="env-flap-left"   aria-hidden="true"></div>
+          <div class="env-flap-right"  aria-hidden="true"></div>
+          <div class="env-flap-top"    aria-hidden="true"></div>
+
+          <!-- Letter inside -->
+          <div class="env-letter" aria-hidden="true">
+            <div class="env-letter-preview">
+              <p>"Words from the heart,<br>sealed with love..."</p>
+            </div>
+          </div>
+
+          <!-- Wax Seal -->
+          <button class="wax-seal-btn" id="wax-seal-btn" aria-label="Open envelope — click the wax seal">
+            ✦
+          </button>
+        </div>
+
+        <p class="envelope-hint">Click the seal to open ✦</p>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PHASE 4: MAIN CONTENT
+         ══════════════════════════════════════ -->
+    <section id="phase-main" class="phase" aria-label="Birthday Letter & Gallery">
+      <div class="main-layout">
+
+        <!-- ── Letter Column ── -->
+        <article class="letter-column">
+          <header class="letter-header">
+            <time class="letter-date" datetime="2025-01-01">January 1, 2025</time>
+          </header>
+
+          <h2 class="letter-salutation">Dear <span data-birthday-name>Sayang</span>,</h2>
+
+          <div class="letter-body">
+            <p>
+              Another year has passed, and yet every time I think of you, it still feels like
+              the very first moment — <em>bright, warm, and utterly irreplaceable.</em> Today is
+              your day, and I want you to know that the world is genuinely more beautiful
+              because you are in it.
+            </p>
+
+            <p>
+              I remember all the little things: the way your eyes light up when something
+              truly makes you happy, the sound of your laughter filling a room, and how
+              you carry <strong>so much grace</strong> through the hardest of days.
+              None of those things have gone unnoticed.
+            </p>
+
+            <p>
+              This year, I hope you give yourself every permission to <em>dream bigger</em>,
+              rest deeper, and celebrate yourself with the same generosity you so freely
+              give to everyone around you. You deserve every good thing that is coming to you.
+            </p>
+
+            <p>
+              On this very special day, know that somewhere, someone is thinking of you
+              with tremendous <strong>gratitude and admiration</strong> — for everything you
+              are, and everything you are still becoming.
+            </p>
+
+            <p>
+              Happy Birthday. May this year exceed every expectation and surprise you
+              in the most wonderful ways.
+            </p>
+          </div>
+
+          <footer class="letter-signature" aria-label="Signature">
+            With all my love, always. 🌹
+          </footer>
+        </article>
+
+        <!-- ── Gallery Column ── -->
+        <aside class="gallery-column">
+          <header class="gallery-header">
+            <h3>Cherished Moments</h3>
+            <p>Click to enlarge</p>
+          </header>
+
+          <div class="photo-grid" role="list" aria-label="Photo gallery">
+            <!-- Photo 1 -->
+            <div class="photo-item" role="listitem" tabindex="0" aria-label="Memory 1 — click to view">
+              <div class="photo-placeholder-inner">
+                <span>📷</span>
+                <small>Memory 1</small>
+              </div>
+              <div class="photo-overlay">
+                <span>🔍</span>
+              </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="photo-item" role="listitem" tabindex="0" aria-label="Memory 2 — click to view">
+              <div class="photo-placeholder-inner">
+                <span>🌸</span>
+                <small>Memory 2</small>
+              </div>
+              <div class="photo-overlay">
+                <span>🔍</span>
+              </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="photo-item" role="listitem" tabindex="0" aria-label="Memory 3 — click to view">
+              <div class="photo-placeholder-inner">
+                <span>🌙</span>
+                <small>Memory 3</small>
+              </div>
+              <div class="photo-overlay">
+                <span>🔍</span>
+              </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="photo-item" role="listitem" tabindex="0" aria-label="Memory 4 — click to view">
+              <div class="photo-placeholder-inner">
+                <span>✨</span>
+                <small>Memory 4</small>
+              </div>
+              <div class="photo-overlay">
+                <span>🔍</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cta-wrap">
+            <button class="cta-btn" id="cta-btn" aria-label="Proceed to cake celebration">
+              <span>Blow the Candles</span>
+              <span aria-hidden="true">🎂</span>
+            </button>
+          </div>
+        </aside>
+
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+        <div class="lightbox-inner">
+          <button class="lightbox-close" id="lightbox-close" aria-label="Close photo viewer">✕</button>
+          <div style="width:60vw; height:60vh; background:rgba(43,15,20,0.8); border-radius:12px; display:flex; align-items:center; justify-content:center; color:rgba(212,175,55,0.5); font-size:4rem; font-family:serif;">
+            📸
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PHASE 5: CAKE CELEBRATION
+         ══════════════════════════════════════ -->
+    <section id="phase-cake" class="phase" aria-label="Birthday Cake Celebration">
+      <!-- Fireworks Canvas -->
+      <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+      <div class="cake-scene">
+        <h2 class="cake-title">Happy Birthday! 🎉</h2>
+
+        <!-- SVG Birthday Cake -->
+        <div class="cake-svg-wrap" role="img" aria-label="Birthday cake with candles">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- ── Candle Flames ── -->
+            <!-- Flame 1 (left) -->
+            <g class="flame candle-flame" transform="translate(68, 55)">
+              <ellipse cx="0" cy="0" rx="5" ry="8" fill="#FFF5C0" opacity="0.95"/>
+              <ellipse cx="0" cy="2" rx="3" ry="5" fill="#FFD700"/>
+              <ellipse cx="0" cy="4" rx="1.5" ry="3" fill="#FF8C00"/>
+            </g>
+
+            <!-- Flame 2 (center) -->
+            <g class="flame candle-flame" transform="translate(100, 48)">
+              <ellipse cx="0" cy="0" rx="5.5" ry="9" fill="#FFF5C0" opacity="0.95"/>
+              <ellipse cx="0" cy="2" rx="3.5" ry="6" fill="#FFD700"/>
+              <ellipse cx="0" cy="4" rx="2" ry="3.5" fill="#FF8C00"/>
+            </g>
+
+            <!-- Flame 3 (right) -->
+            <g class="flame candle-flame" transform="translate(132, 55)">
+              <ellipse cx="0" cy="0" rx="5" ry="8" fill="#FFF5C0" opacity="0.95"/>
+              <ellipse cx="0" cy="2" rx="3" ry="5" fill="#FFD700"/>
+              <ellipse cx="0" cy="4" rx="1.5" ry="3" fill="#FF8C00"/>
+            </g>
+
+            <!-- ── Smoke (hidden until blown) ── -->
+            <ellipse class="candle-smoke" cx="68" cy="50" rx="3" ry="2" fill="rgba(200,200,200,0.4)" display="none"/>
+            <ellipse class="candle-smoke" cx="100" cy="42" rx="3" ry="2" fill="rgba(200,200,200,0.4)" display="none"/>
+            <ellipse class="candle-smoke" cx="132" cy="50" rx="3" ry="2" fill="rgba(200,200,200,0.4)" display="none"/>
+
+            <!-- ── Candles ── -->
+            <!-- Left candle -->
+            <rect x="63" y="63" width="10" height="30" rx="3" fill="#E8C4B8"/>
+            <rect x="63" y="63" width="10" height="5"  rx="2" fill="#D4A090"/>
+            <!-- Wick -->
+            <line x1="68" y1="63" x2="68" y2="57" stroke="#4A3A2A" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- Center candle (taller) -->
+            <rect x="94" y="57" width="12" height="36" rx="3" fill="#F0B8C8"/>
+            <rect x="94" y="57" width="12" height="5"  rx="2" fill="#DC9EB4"/>
+            <line x1="100" y1="57" x2="100" y2="50" stroke="#4A3A2A" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- Right candle -->
+            <rect x="127" y="63" width="10" height="30" rx="3" fill="#D4C8B0"/>
+            <rect x="127" y="63" width="10" height="5"  rx="2" fill="#BFB090"/>
+            <line x1="132" y1="63" x2="132" y2="57" stroke="#4A3A2A" stroke-width="1.5" stroke-linecap="round"/>
+
+            <!-- ── Cake Top Layer ── -->
+            <rect x="50" y="93" width="100" height="28" rx="6" fill="#8B1A2A"/>
+            <rect x="50" y="93" width="100" height="8"  rx="6" fill="#A82238"/>
+            <!-- Frosting drips -->
+            <path d="M58 93 Q62 105 66 93 Q70 105 74 93 Q78 105 82 93 Q86 105 90 93 Q94 105 98 93 Q102 105 106 93 Q110 105 114 93 Q118 105 122 93 Q126 105 130 93 Q134 105 138 93 Q142 105 146 93" stroke="#C83040" stroke-width="3" fill="none"/>
+            <!-- Gold stars decoration -->
+            <text x="60" y="112" font-size="8" fill="#D4AF37" font-family="serif">✦</text>
+            <text x="94" y="112" font-size="8" fill="#D4AF37" font-family="serif">✦</text>
+            <text x="128" y="112" font-size="8" fill="#D4AF37" font-family="serif">✦</text>
+
+            <!-- ── Cake Middle Layer ── -->
+            <rect x="40" y="121" width="120" height="30" rx="4" fill="#6B1020"/>
+            <rect x="40" y="121" width="120" height="7"  rx="4" fill="#8B1830"/>
+            <!-- Swirl decoration -->
+            <path d="M52 136 Q60 130 68 136 Q76 142 84 136 Q92 130 100 136 Q108 142 116 136 Q124 130 132 136 Q140 142 148 136" stroke="rgba(212,175,55,0.4)" stroke-width="1.5" fill="none"/>
+
+            <!-- ── Cake Bottom Layer (base) ── -->
+            <rect x="30" y="151" width="140" height="34" rx="6" fill="#4A0D1A"/>
+            <rect x="30" y="151" width="140" height="8"  rx="6" fill="#6B1830"/>
+            <!-- Gold trim -->
+            <rect x="30" y="179" width="140" height="3" rx="1" fill="rgba(212,175,55,0.5)"/>
+            <!-- Text -->
+            <text x="100" y="172" text-anchor="middle" font-size="9" fill="rgba(212,175,55,0.7)" font-family="Georgia, serif" font-style="italic">Happy Birthday</text>
+
+            <!-- ── Plate ── -->
+            <ellipse cx="100" cy="186" rx="75" ry="6" fill="#1A0A10"/>
+            <ellipse cx="100" cy="184" rx="75" ry="5" fill="#2A1018"/>
+            <path d="M25 184 Q100 192 175 184" stroke="rgba(212,175,55,0.2)" stroke-width="1" fill="none"/>
+
+          </svg>
+        </div>
+
+        <!-- Blow Button -->
+        <button class="blow-btn" id="blow-btn" aria-label="Blow out the candles">
+          <span>💨</span>
+          <span>Blow the Candles</span>
+        </button>
+
+        <!-- Wish Message (revealed after blow) -->
+        <p class="wish-message" id="wish-message" aria-live="polite">
+          "May every wish you whispered tonight come true. ✨<br>
+          You deserve the world, and so much more."
+        </p>
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+  <script>
+/**
+ * fireworks.js — High-Performance Canvas Particle Engine
+ * Physics: velocity vectors, gravity, friction, alpha decay.
+ * Colors: Warm festive HSL palette (rose gold, copper, crimson, gold).
+ */
+
+class Fireworks {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.rockets = [];
+    this.running = false;
+    this.raf = null;
+    this.launchInterval = null;
+
+    // Festive warm palette (HSL hue ranges)
+    this.PALETTE = [
+      [0, 15],      // deep crimson / red
+      [25, 40],     // copper / warm orange
+      [45, 58],     // soft gold / amber
+      [330, 355],   // rose gold / pink-red
+      [15, 28],     // sienna / rust
+    ];
+
+    this._resize = this._resize.bind(this);
+    window.addEventListener('resize', this._resize);
+    this._resize();
+  }
+
+  _resize() {
+    this.canvas.width  = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+
+  _randomHue() {
+    const range = this.PALETTE[Math.floor(Math.random() * this.PALETTE.length)];
+    return range[0] + Math.random() * (range[1] - range[0]);
+  }
+
+  _launchRocket() {
+    const x = this.canvas.width * (0.2 + Math.random() * 0.6);
+    const targetY = this.canvas.height * (0.1 + Math.random() * 0.45);
+    const hue = this._randomHue();
+
+    this.rockets.push({
+      x, y: this.canvas.height,
+      targetY,
+      vy: -14 - Math.random() * 8,
+      hue,
+      trail: [],
+      burst: false,
+    });
+  }
+
+  _burstAt(x, y, hue) {
+    const COUNT = 80 + Math.floor(Math.random() * 60);
+    for (let i = 0; i < COUNT; i++) {
+      const angle = (Math.PI * 2 * i) / COUNT + (Math.random() - 0.5) * 0.3;
+      const speed = 2.5 + Math.random() * 5;
+      const sat   = 65 + Math.random() * 25;
+      const lum   = 55 + Math.random() * 20;
+      const hueV  = hue + (Math.random() - 0.5) * 20;
+
+      this.particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        gravity: 0.12 + Math.random() * 0.05,
+        friction: 0.97 - Math.random() * 0.02,
+        alpha: 1,
+        decay: 0.012 + Math.random() * 0.01,
+        radius: 2 + Math.random() * 2,
+        hue: hueV, sat, lum,
+        trail: [],
+        sparkle: Math.random() < 0.3,
+      });
+    }
+
+    // Gold shimmer ring
+    for (let i = 0; i < 20; i++) {
+      const angle = (Math.PI * 2 * i) / 20;
+      const speed = 1.5 + Math.random() * 2;
+      this.particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        gravity: 0.05,
+        friction: 0.99,
+        alpha: 0.8,
+        decay: 0.008,
+        radius: 1.5,
+        hue: 48, sat: 80, lum: 65,
+        trail: [],
+        sparkle: false,
+      });
+    }
+  }
+
+  _update() {
+    // Update rockets
+    for (let i = this.rockets.length - 1; i >= 0; i--) {
+      const r = this.rockets[i];
+      r.trail.push({ x: r.x, y: r.y });
+      if (r.trail.length > 8) r.trail.shift();
+
+      r.y += r.vy;
+      r.vy += 0.3; // gravity on ascent
+
+      if (r.y <= r.targetY && !r.burst) {
+        r.burst = true;
+        this._burstAt(r.x, r.y, r.hue);
+        this.rockets.splice(i, 1);
+      }
+    }
+
+    // Update particles
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.trail.push({ x: p.x, y: p.y });
+      if (p.trail.length > 5) p.trail.shift();
+
+      p.x  += p.vx;
+      p.y  += p.vy;
+      p.vx *= p.friction;
+      p.vy *= p.friction;
+      p.vy += p.gravity;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        this.particles.splice(i, 1);
+      }
+    }
+  }
+
+  _draw() {
+    const { ctx, canvas } = this;
+    // Trailing fade
+    ctx.fillStyle = 'rgba(13, 13, 13, 0.2)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw rockets
+    for (const r of this.rockets) {
+      for (let t = 0; t < r.trail.length; t++) {
+        const a = (t / r.trail.length) * 0.8;
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.fillStyle = `hsl(${r.hue}, 80%, 70%)`;
+        ctx.beginPath();
+        ctx.arc(r.trail[t].x, r.trail[t].y, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      ctx.save();
+      ctx.globalAlpha = 0.9;
+      ctx.fillStyle = `hsl(${r.hue}, 80%, 75%)`;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = `hsl(${r.hue}, 80%, 70%)`;
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, 3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Draw particles
+    for (const p of this.particles) {
+      // Trail
+      for (let t = 0; t < p.trail.length; t++) {
+        const ta = (t / p.trail.length) * p.alpha * 0.5;
+        ctx.save();
+        ctx.globalAlpha = ta;
+        ctx.fillStyle = `hsl(${p.hue}, ${p.sat}%, ${p.lum}%)`;
+        const tr = p.radius * (t / p.trail.length);
+        ctx.beginPath();
+        ctx.arc(p.trail[t].x, p.trail[t].y, tr, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Core
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.shadowBlur = p.sparkle ? 15 : 8;
+      ctx.shadowColor = `hsl(${p.hue}, ${p.sat}%, ${p.lum}%)`;
+      ctx.fillStyle   = `hsl(${p.hue}, ${p.sat}%, ${p.lum + 10}%)`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sparkle cross
+      if (p.sparkle && p.alpha > 0.4) {
+        ctx.globalAlpha = p.alpha * 0.6;
+        ctx.strokeStyle = `hsl(${p.hue}, 90%, 85%)`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(p.x - p.radius * 2, p.y);
+        ctx.lineTo(p.x + p.radius * 2, p.y);
+        ctx.moveTo(p.x, p.y - p.radius * 2);
+        ctx.lineTo(p.x, p.y + p.radius * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+
+  _loop() {
+    if (!this.running) return;
+    this._update();
+    this._draw();
+    this.raf = requestAnimationFrame(() => this._loop());
+  }
+
+  start() {
+    if (this.running) return;
+    this.running = true;
+    this._resize();
+
+    // Launch rockets on interval
+    this.launchInterval = setInterval(() => {
+      const count = 1 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => this._launchRocket(), i * 200);
+      }
+    }, 700);
+
+    // First burst immediately
+    this._launchRocket();
+    this._loop();
+  }
+
+  stop() {
+    this.running = false;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.launchInterval) clearInterval(this.launchInterval);
+    window.removeEventListener('resize', this._resize);
+    this.particles = [];
+    this.rockets = [];
+    const { ctx, canvas } = this;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+
+/**
+ * keypad.js — Encapsulated Passcode Authentication Component
+ * Handles input, validation, UI feedback, and state transitions.
+ */
+
+class Keypad {
+  constructor({ passcode, onSuccess, onError }) {
+    this.PASSCODE = passcode;
+    this.onSuccess = onSuccess;
+    this.onError = onError;
+
+    this.input = '';
+    this.locked = false;
+
+    this._init();
+  }
+
+  _init() {
+    this.pane = document.querySelector('.keypad-pane');
+    this.dots = document.querySelectorAll('.pin-dot');
+    this.pinDisplay = document.querySelector('.pin-display');
+    this.errorFlash = document.getElementById('error-flash');
+
+    // Bind key buttons
+    this.pane.querySelectorAll('.key-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        if (this.locked) return;
+        const val = btn.dataset.key;
+        this._handleKey(val, e);
+      });
+    });
+
+    // Keyboard support
+    this._kbHandler = (e) => {
+      if (this.locked) return;
+      if (e.key >= '0' && e.key <= '9') this._handleKey(e.key);
+      else if (e.key === 'Backspace') this._handleKey('del');
+      else if (e.key === 'Escape') this._handleKey('clr');
+    };
+    document.addEventListener('keydown', this._kbHandler);
+  }
+
+  _handleKey(val, event) {
+    if (val === 'clr') {
+      this.input = '';
+    } else if (val === 'del') {
+      this.input = this.input.slice(0, -1);
+    } else if (this.input.length < this.PASSCODE.length) {
+      this.input += val;
+      if (event) this._triggerRipple(event);
+    }
+
+    this._updateDots();
+
+    // Auto-validate when full length reached
+    if (this.input.length === this.PASSCODE.length) {
+      setTimeout(() => this._validate(), 200);
+    }
+  }
+
+  _triggerRipple(event) {
+    const btn = event.currentTarget;
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${event.clientX - rect.left - size/2}px;
+      top:  ${event.clientY - rect.top  - size/2}px;
+    `;
+    btn.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  }
+
+  _updateDots() {
+    this.dots.forEach((dot, i) => {
+      dot.classList.toggle('filled', i < this.input.length);
+    });
+  }
+
+  _validate() {
+    if (this.input === this.PASSCODE) {
+      this.locked = true;
+      document.removeEventListener('keydown', this._kbHandler);
+      this.onSuccess();
+    } else {
+      this._triggerError();
+    }
+  }
+
+  _triggerError() {
+    // Shake
+    this.pane.classList.add('shake');
+    this.pinDisplay.classList.add('error');
+
+    // Red flash
+    this.errorFlash.classList.add('show');
+
+    setTimeout(() => {
+      this.pane.classList.remove('shake');
+      this.errorFlash.classList.remove('show');
+    }, 600);
+
+    setTimeout(() => {
+      this.pinDisplay.classList.remove('error');
+      this.input = '';
+      this._updateDots();
+      if (this.onError) this.onError();
+    }, 700);
+  }
+
+  destroy() {
+    document.removeEventListener('keydown', this._kbHandler);
+  }
+}
+
+
+/**
+ * states.js — Phase Logic & DOM Manipulation
+ * Each enter/exit function handles setup and teardown per phase.
+ */
+
+// ─── PHASE: LOCKED ───────────────────────────────────────────
+function enterLocked() {
+  // Nothing extra; Keypad is initialized in app.js
+}
+
+function exitLocked() {
+  // Keypad cleanup handled by app.js (keypad.destroy())
+}
+
+// ─── PHASE: LOADING ──────────────────────────────────────────
+const LOADING_TEXTS = [
+  'Unwrapping memories...',
+  'Sprinkling stardust...',
+  'Baking the virtual cake...',
+  'Lighting the candles...',
+  'Almost ready...',
+  'It\'s time ✨',
+];
+
+let loadingTextInterval = null;
+
+function enterLoading(onComplete) {
+  const fill    = document.getElementById('progress-fill');
+  const subEl   = document.getElementById('loading-subtitle');
+
+  let textIdx = 0;
+  subEl.textContent = LOADING_TEXTS[0];
+
+  // Cycle subtitle every 800ms
+  loadingTextInterval = setInterval(() => {
+    textIdx = (textIdx + 1) % LOADING_TEXTS.length;
+    subEl.style.opacity = '0';
+    setTimeout(() => {
+      subEl.textContent = LOADING_TEXTS[textIdx];
+      subEl.style.opacity = '1';
+    }, 200);
+  }, 800);
+
+  // Animate progress bar over 2500ms
+  const DURATION = 2500;
+  const start = performance.now();
+
+  function animateProgress(now) {
+    const elapsed = now - start;
+    const pct = Math.min(elapsed / DURATION, 1);
+    // Ease the progress bar
+    const eased = pct < 0.5
+      ? 2 * pct * pct
+      : -1 + (4 - 2 * pct) * pct;
+    fill.style.width = (eased * 100) + '%';
+
+    if (pct < 1) {
+      requestAnimationFrame(animateProgress);
+    } else {
+      exitLoading();
+      onComplete();
+    }
+  }
+  requestAnimationFrame(animateProgress);
+}
+
+function exitLoading() {
+  if (loadingTextInterval) {
+    clearInterval(loadingTextInterval);
+    loadingTextInterval = null;
+  }
+}
+
+// ─── PHASE: ENVELOPE ─────────────────────────────────────────
+function enterEnvelope(onComplete) {
+  const wrapper = document.querySelector('.envelope-wrapper');
+  const seal    = document.getElementById('wax-seal-btn');
+  const hint    = document.querySelector('.envelope-hint');
+
+  const handleSeal = () => {
+    if (wrapper.classList.contains('open')) return;
+
+    seal.classList.add('opened');
+    seal.removeEventListener('click', handleSeal);
+    hint.style.opacity = '0';
+
+    // 1. Open top flap
+    wrapper.classList.add('open');
+
+    // 2. After letter slides up, fade out envelope → transition to main
+    setTimeout(() => {
+      onComplete();
+    }, 1800);
+  };
+
+  seal.addEventListener('click', handleSeal);
+}
+
+function exitEnvelope() {
+  // Clean up listeners — handled inside enterEnvelope closure
+}
+
+// ─── PHASE: MAIN_CONTENT ─────────────────────────────────────
+function enterMain(onCake) {
+  const cta = document.getElementById('cta-btn');
+  const photoItems = document.querySelectorAll('.photo-item');
+  const lightbox   = document.getElementById('lightbox');
+  const lbClose    = document.getElementById('lightbox-close');
+
+  const handleCta = () => {
+    cta.removeEventListener('click', handleCta);
+    onCake();
+  };
+  cta.addEventListener('click', handleCta);
+
+  // Photo lightbox
+  photoItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      lightbox.classList.add('open');
+      lightbox.dataset.activeIdx = i;
+    });
+  });
+
+  const closeLightbox = () => lightbox.classList.remove('open');
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+}
+
+function exitMain() {
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('open');
+}
+
+// ─── PHASE: CAKE_CELEBRATION ─────────────────────────────────
+let fireworksInstance = null;
+
+function enterCake(FireworksClass) {
+  const blowBtn  = document.getElementById('blow-btn');
+  const flames   = document.querySelectorAll('.candle-flame');
+  const smokes   = document.querySelectorAll('.candle-smoke');
+  const canvas   = document.getElementById('fireworks-canvas');
+  const wishMsg  = document.getElementById('wish-message');
+
+  blowBtn.addEventListener('click', () => {
+    if (blowBtn.classList.contains('blown')) return;
+    blowBtn.classList.add('blown');
+    blowBtn.textContent = '🌟 Make a Wish!';
+
+    // Extinguish flames
+    flames.forEach(f => {
+      f.style.transition = 'opacity 0.6s ease';
+      f.style.opacity = '0';
+    });
+
+    // Smoke puffs
+    smokes.forEach((s, i) => {
+      setTimeout(() => {
+        s.style.display = 'block';
+        s.classList.add('smoke-particle');
+      }, i * 100);
+    });
+
+    // Launch fireworks
+    fireworksInstance = new FireworksClass(canvas);
+    fireworksInstance.start();
+
+    // Show wish message
+    setTimeout(() => {
+      wishMsg.classList.add('show');
+    }, 1200);
+
+  }, { once: true });
+}
+
+function exitCake() {
+  if (fireworksInstance) {
+    fireworksInstance.stop();
+    fireworksInstance = null;
+  }
+}
+
+
+
+// ─── CONFIGURATION ────────────────────────────────────────────
+const CONFIG = {
+  PASSCODE: '010101',
+  NAME: 'Sayang',
+};
+
+// ─── STATE MACHINE ────────────────────────────────────────────
+let currentState = null;
+let keypadInstance = null;
+
+function getPhaseEl(state) {
+  const map = {
+    LOCKED:           'phase-locked',
+    LOADING:          'phase-loading',
+    ENVELOPE:         'phase-envelope',
+    MAIN_CONTENT:     'phase-main',
+    CAKE_CELEBRATION: 'phase-cake',
+  };
+  return document.getElementById(map[state]);
+}
+
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function transition(nextState) {
+  if (nextState === currentState) return;
+
+  if (currentState) {
+    const oldEl = getPhaseEl(currentState);
+    oldEl.classList.remove('active');
+    if (currentState === 'LOADING')          exitLoading();
+    if (currentState === 'MAIN_CONTENT')     exitMain();
+    if (currentState === 'CAKE_CELEBRATION') exitCake();
+    await wait(600);
+  }
+
+  currentState = nextState;
+  const newEl = getPhaseEl(nextState);
+  newEl.classList.add('active');
+
+  if (nextState === 'LOCKED')           initKeypad();
+  else if (nextState === 'LOADING')     enterLoading(() => transition('ENVELOPE'));
+  else if (nextState === 'ENVELOPE')    enterEnvelope(() => transition('MAIN_CONTENT'));
+  else if (nextState === 'MAIN_CONTENT') enterMain(() => transition('CAKE_CELEBRATION'));
+  else if (nextState === 'CAKE_CELEBRATION') enterCake(Fireworks);
+}
+
+function initKeypad() {
+  if (keypadInstance) keypadInstance.destroy();
+  keypadInstance = new Keypad({
+    passcode: CONFIG.PASSCODE,
+    onSuccess: () => transition('LOADING'),
+    onError: () => {},
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-birthday-name]').forEach(el => {
+    el.textContent = CONFIG.NAME;
+  });
+  transition('LOCKED');
+});
+
+</script>
+</body>
+</html>
